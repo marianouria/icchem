@@ -1,0 +1,71 @@
+## This is an example data file for jfm2full.c
+##
+## The following line specifies the total number of the model segments.
+Number of segments                 38
+
+## The next line defines the length of each segment in base pairs.
+## All segments have the same length. This line is necessary
+## for conversion of the result to moles per liter.
+##Segment length                     5.25
+
+## The next line specifies the segment diameter-to-length ratio.
+## Any non-zero value turns on hardcore excluded-volume interactions 
+## and makes the chain self-avoiding. Use this feature only 
+## if you are absolutely sure that these effects are important 
+## because the program will run considerably slower. 
+##Diameter-to-length ratio           0.0
+
+## The next part contains detailed description of all the model
+## chain segments. Each line contains 6 numbers:
+## *   number of sequential segments of a certain kind.
+## *   then THREE Euler angles in radians describing
+## *   the equilibrium bend and twist in each segment of the kind.
+## *   then rms fluctuations of the twist, rmst. This is 0.175
+## *   for 5.25-bp segments if torsional rigidity is 2.4e-19 erg*cm.
+## Then rms fluctuations of the bend, rmsb. More precisely rmsb
+## *   is the specified below. It equals to 0.193
+## *   for 5.25-bp segments if the persistence length is 48.5 nm.
+## The values of rmst and rmsb are connected with the length of one
+## *   segment, L, and the bending and torsional rigidities of a
+## *   segment, g and C:
+##
+##               rmst=sqrt(L*kT/C),   rmsb=sqrt(L*kT/g),
+##
+## *   where kT is the Boltzmann temperature factor. The value of g 
+## *   is directly related with the persistence length of a polymer 
+## *   chain, a:
+##                              a=g/kT.
+##
+## The following set of segments corresponds to
+##    13 straight segments; for simplicity twist of all segments equals 0;
+##     1 intrinsically bend segment, beta=0.262;
+##     1 straight segment, beta=0.262;
+##     1 intrinsically bend segment, beta=0.262;
+##    17 straight segments;
+##     1 straight segments represents the single-stranded linker;
+##     4 straight segments;
+Segments: number alpha beta gamma dac db length diam
+  8    0.0  0.0     0.0   0.175  0.193  0.1  0.01
+  5    0.0  0.262   0.0   5.60   0.193  0.2  0.02
+  1    0.0  0.262   0.0   0.175  0.193  0.3  0.3
+  1    0.0  0.0     0.0   0.175  0.193  0.4  0.02
+  1    0.0  0.262   0.0   0.175  0.193  0.5  0.05
+ 17    0.0  0.0     0.0   0.175  0.193  0.6  0.1
+  1    0.0  0.0     0.0   5.60   0.635  0.7  0.03
+  4    0.0  0.0     0.0   0.175  0.193  0.8  0.09
+
+## The next line specifies the desired linking number of the model
+## chain in the circular topoisomer.
+Linking number                     0
+
+## The next part is the restrictions on twist and bend
+## angles and distance between the chain ends that provide
+## an accurate calculation of the j-factor in most cases.
+## They can also be used to remove certain restrictions altogether.
+## First two numbers are in radians. The last is in base pairs.
+Conformation restriction: tw bd r
+0.1 0.1 3.1
+
+## The next is the number of Metropolis movements for evaluation
+## of each conditional probability. Increase it to improve the accuracy.
+Number of movements                100000
